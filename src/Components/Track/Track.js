@@ -18,8 +18,8 @@
          return (
             <div class="Track">
                 <div className="Track-information">
-                    <h3>{this.state.name}</h3>
-                    <p>{this.state.artist} | {this.state.album}</p>
+                    <h3>{this.props.name}</h3>
+                    <p>{this.props.artist} | {this.props.album}</p>
                 </div>
                 <button className="Track-action">+ or - will go here</button>
             </div>
