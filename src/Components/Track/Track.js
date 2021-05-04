@@ -2,6 +2,10 @@
  import './Track.css'; 
  
  export default class Track extends Component {
+    constructor(props){
+        super(props);
+        this.addTrack = this.addTrack.bind(this); 
+    }
 
 
     renderAction(){
@@ -12,16 +16,20 @@
         }
     }
 
+    addTrack(){
+        this.props.onAdd(this.props.track)
+    }
+
 
 
      render() {
          return (
             <div class="Track">
                 <div className="Track-information">
-                    <h3>{this.props.name}</h3>
-                    <p>{this.props.artist} | {this.props.album}</p>
+                    <h3>{this.props.track.name}</h3>
+                    <p>{this.props.track.artist} | {this.props.track.album}</p>
                 </div>
-                <button className="Track-action">+ or - will go here</button>
+                <button className="Track-action" onClick={this.addTrack}>+</button>
             </div>
          )
      }
