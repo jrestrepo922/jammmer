@@ -15,7 +15,6 @@ export default class Playlist extends Component {
     }
 
     render() {
-        debugger
         return (
             <div className="Playlist">
                 <input defaultValue="New Playlist" onChange={this.handleNameChange}/>
