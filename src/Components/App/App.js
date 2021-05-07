@@ -3,21 +3,16 @@ import { Component } from 'react';
 import Playlist  from '../Playlist/Playlist';
 import SearchBar  from '../SearchBar/SearchBar'; 
 import SearchResults  from '../SearchResults/SearchResults'; 
+import Spotify from '../../util/Spotify'
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchResults: [
-        {name: "Tu Carcel", artist: "Enanitos Verdes",  album:"En Vivo",  id:"1"},
-        {name: "Lamento Boliviano", artist: "Enanitos Verdes",  album:"En Vivo",  id:"2"},
-      ],
+      searchResults: [],
     
       playlistName: "Rock Latino",
-      playlistTracks: [
-        {name: "Cara Luna", artist: "Bacilos",  album:"Sin Verguenza",  id:"3"},
-        {name: "Mi Primer Millon", artist: "Bacilos",  album:"Sin Verguenza",  id:"4"}
-      ],
+      playlistTracks: [],
     }
     this.addTrack = this.addTrack.bind(this); 
     this.removeTrack = this.removeTrack.bind(this); 
@@ -57,10 +52,22 @@ class App extends Component {
   
   savePlaylist(){
     const trackUris = this.state.playlistTracks.map(track  => track.uri);
+    // uri is used to uniquely identified songs in Spotify
+    Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+      this.setState({
+        playlistName: 'New Playlist', 
+        playlistTracks: []
+      })
+    })
   }
 
   search(term){
-    console.log(term)
+    // array of object tracks are return. After they are return set the state of searchResults equals to the array of object tracks. 
+    Spotify.search(term).then(searchResults => {
+      this.setState({
+        searchResults: searchResults
+      })
+    })
   }
 
   render(){
