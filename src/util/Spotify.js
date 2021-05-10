@@ -50,6 +50,9 @@ const Spotify = {
         })
     }, 
 
+
+
+
     savePlaylist(name, trackUris){
         // if now songs are added to the playlist, do nothing. 
         if(!name || !trackUris.length){
@@ -77,6 +80,60 @@ const Spotify = {
                         method: 'POST', 
                         body: JSON.stringify({ uris: trackUris})
                     })
+                }
+            ) 
+        })
+    },
+
+    getUserPlaylist(){
+        // if now songs are added to the playlist, do nothing. 
+        const accessToken = Spotify.getAccessToken(); 
+        const headers = { Authorization: `Bearer ${accessToken}`}; 
+        let userId; 
+
+        return fetch('https://api.spotify.com/v1/me', { headers: headers }).then(
+            response => response.json()
+        ).then(jsonResponse => {
+            // jsonReponse.id is fetch using a get request and need for the post request fetch bellow. 
+            userId = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {headers: headers })
+                .then(response => response.json()).then( // json is taken as input and parse to produce Javascript Object
+                jsonResponse => {
+                    return jsonResponse.items.map(item => {
+                        return {name: item.name, playlistId: item.id}
+                    })
+                }
+            ) 
+        })
+    },
+
+    getPlaylistTracks(playlistId){
+        // if now songs are added to the playlist, do nothing. 
+        const accessToken = Spotify.getAccessToken(); 
+        const headers = { Authorization: `Bearer ${accessToken}`}; 
+        let userId; 
+
+        return fetch('https://api.spotify.com/v1/me', { headers: headers }).then(
+            response => response.json()
+        ).then(jsonResponse => {
+            // jsonReponse.id is fetch using a get request and need for the post request fetch bellow. 
+            userId = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {headers: headers })
+                .then(response => response.json()).then( // json is taken as input and parse to produce Javascript Object
+                jsonResponse => {
+                    if(!jsonResponse.tracks){
+                        return []; 
+                    }
+                    // returns track objects
+                    return jsonResponse.tracks.items.map(track => (
+                        {
+                            id: track.id, 
+                            name: track.name, 
+                            artist: track.artists[0].name,
+                            album: track.album.name, 
+                            uri: track.uri
+                        }
+                    ))
                 }
             ) 
         })
