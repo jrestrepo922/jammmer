@@ -20,7 +20,7 @@ export default class PlaylistDisplay extends Component {
         }
 
         return (
-            <div className='PlaylistDisplay'>
+            <div className={`PlaylistDisplay ${this.props.playlistId}`}>
                 <h3 style={h3Style}
                 onClick={this.handleOnClick}
                 >{this.props.name}</h3>

@@ -73,10 +73,11 @@ class App extends Component {
   }
 
   selectPlaylist(playlistId){
+    let playlistName = document.getElementsByClassName(playlistId)[0].innerText
     Spotify.getPlaylistTracks(playlistId).then( playlistTracks => {
-      debugger
       this.setState({
-        playlistTracks: playlistTracks
+        playlistTracks: playlistTracks,
+        playlistName: playlistName
       })
     })
   }

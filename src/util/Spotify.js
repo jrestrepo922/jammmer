@@ -108,11 +108,11 @@ const Spotify = {
     },
 
     getPlaylistTracks(playlistId){
+        
         // if now songs are added to the playlist, do nothing. 
         const accessToken = Spotify.getAccessToken(); 
         const headers = { Authorization: `Bearer ${accessToken}`}; 
         let userId; 
-
         return fetch('https://api.spotify.com/v1/me', { headers: headers }).then(
             response => response.json()
         ).then(jsonResponse => {
@@ -121,17 +121,20 @@ const Spotify = {
             return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {headers: headers })
                 .then(response => response.json()).then( // json is taken as input and parse to produce Javascript Object
                 jsonResponse => {
-                    if(!jsonResponse.tracks){
+                    if(!jsonResponse.items){
                         return []; 
                     }
+                    
                     // returns track objects
-                    return jsonResponse.tracks.items.map(track => (
+                    return jsonResponse.items.map(track => (
+                        
                         {
-                            id: track.id, 
-                            name: track.name, 
-                            artist: track.artists[0].name,
-                            album: track.album.name, 
-                            uri: track.uri
+                            id: track.track.id, 
+                            name: track.track.name, 
+                            artist: track.track.artists[0].name,
+                            album: track.track.album.name, 
+                            uri: track.track.uri,
+                            playlistId: playlistId
                         }
                     ))
                 }
