@@ -14,6 +14,7 @@ class App extends Component {
     
       playlistName: "",
       playlistTracks: [],
+      playlistId: null
     }
     this.addTrack = this.addTrack.bind(this); 
     this.removeTrack = this.removeTrack.bind(this); 
@@ -53,9 +54,10 @@ class App extends Component {
   }
   
   savePlaylist(){
+    let playlistId = this.state.playlistId
     const trackUris = this.state.playlistTracks.map(track  => track.uri);
     // uri is used to uniquely identified songs in Spotify
-    Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+    Spotify.savePlaylist(this.state.playlistName, trackUris, playlistId).then(() => {
       this.setState({
         playlistName: 'New Playlist', 
         playlistTracks: []
@@ -77,7 +79,8 @@ class App extends Component {
     Spotify.getPlaylistTracks(playlistId).then( playlistTracks => {
       this.setState({
         playlistTracks: playlistTracks,
-        playlistName: playlistName
+        playlistName: playlistName,
+        playlistId: playlistId
       })
     })
   }

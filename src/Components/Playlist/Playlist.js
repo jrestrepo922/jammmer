@@ -18,7 +18,7 @@ export default class Playlist extends Component {
         if(this.props.playlistName){
             return   <input value={this.props.playlistName} onChange={this.handleNameChange}/>
         } else {
-            return   <input value="New PlayList" onChange={this.handleNameChange}/>
+            return   <input defaultValue="New PlayList" onChange={this.handleNameChange}/>
         }
     }
 
