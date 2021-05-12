@@ -30,9 +30,20 @@
      render() {
          return (
             <div className="Track">
+                <div className="overlay">
+                    <input type="image" src={this.props.track.image} alt="album"
+                    style={{height: "auto", width:"100%"}} className="thumbnail"/>
+                   
+                    <span className="playBtn"><ion-icon name="play"></ion-icon></span>
+                
+                  
+                    
+                </div>
                 <div className="Track-information">
-                    <h3>{this.props.track.name}</h3>
-                    <p>{this.props.track.artist} | {this.props.track.album}</p>
+
+                        <h3>{this.props.track.name}</h3>
+                        <p>{this.props.track.artist} | {this.props.track.album}</p>
+
                 </div>
                 {this.renderAction()}
             </div>
@@ -40,3 +51,4 @@
      }
  }
  
+//  <input type="image" src="http://wptf.com/wp-content/uploads/2014/05/play-button.png" width="50" height="50" alt=""/>
