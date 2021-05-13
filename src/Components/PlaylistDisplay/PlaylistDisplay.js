@@ -14,17 +14,21 @@ export default class PlaylistDisplay extends Component {
 
 
     render() {
-        const h3Style={
-            width: "95%",
-            borderBottom: "1px solid rgba(256, 256, 256, 0.8)"
-        }
+        
 
         return (
-            <div className={`PlaylistDisplay ${this.props.playlistId}`}>
-                <h3 style={h3Style}
-                onClick={this.handleOnClick}
-                >{this.props.name}</h3>
+            <div className={`PlaylistDisplay ${this.props.playlistId}`} onClick={this.handleOnClick}>
+                <div className="overlay">
+                    <input type="image" src={this.props.image} alt="album"
+                    style={{height: "auto", width:"100%"}} className="thumbnail"/>
+                </div>
+                <div className="Track-information" >
+                    <h3>{this.props.name}</h3>
+                    
+                </div>
             </div>
         )
     }
 }
+
+// <p>{this.props.owner}</p>

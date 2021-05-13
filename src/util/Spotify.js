@@ -38,6 +38,7 @@ const Spotify = {
                 return []; 
             }
             // returns track objects
+            
             return jsonResponse.tracks.items.map(track => (
                 {
                     id: track.id, 
@@ -128,7 +129,12 @@ const Spotify = {
                 .then(response => response.json()).then( // json is taken as input and parse to produce Javascript Object
                 jsonResponse => {
                     return jsonResponse.items.map(item => {
-                        return {name: item.name, playlistId: item.id}
+                        return {
+                                    name: item.name, 
+                                    playlistId: item.id, 
+                                    image: item.images[0].url, 
+                                    owner: item.owner.display_name
+                                }
                     })
                 }
             ) 
@@ -162,7 +168,9 @@ const Spotify = {
                             artist: track.track.artists[0].name,
                             album: track.track.album.name, 
                             uri: track.track.uri,
-                            playlistId: playlistId
+                            playlistId: playlistId,
+                            image: track.track.album.images[0].url,
+                            sample: track.track.preview_url
                         }
                     ))
                 }

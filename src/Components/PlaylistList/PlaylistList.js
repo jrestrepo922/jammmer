@@ -21,8 +21,11 @@ export default class PlaylistList extends Component {
     }
 
     render() {
+        
         let playlistToDisplay = this.state.playlists.map(playlist => {
-            return <PlaylistDisplay  name={playlist.name} playlistId={playlist.playlistId} key={playlist.playlistId} selectPlaylist={this.props.selectPlaylist}/>
+            return <PlaylistDisplay  name={playlist.name} playlistId={playlist.playlistId} key={playlist.playlistId} selectPlaylist={this.props.selectPlaylist}
+            owner={playlist.owner} image={playlist.image}
+            />
         })
 
         return (
