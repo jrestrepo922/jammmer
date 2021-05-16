@@ -1,0 +1,34 @@
+.PlaylistDisplay{
+    display: flex;
+    flex-direction: row;
+    width: 44%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    
+} 
+
+.PlaylistDisplay input{
+    width: 30%;
+    height: auto;
+}
+
+.playlist-information{
+    margin-left: 2%;
+}
+
+
+@media only screen and (max-width: 1020px) {
+    .PlaylistDisplay{
+        display: flex;
+        flex-direction: row;
+        width: 94%;
+        margin-bottom: 3%;
+        margin-right: 0%;
+        
+    } 
+
+    .PlaylistDisplay input{
+        width: 30%;
+        height: auto;
+    }
+  }

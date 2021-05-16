@@ -72,8 +72,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # jammmer
 I. additional functionality to add to the app. 
     <!-- 1. when the edit are done to new playlist of existing playlist reset to new playlist -->
-    2. Add sample songs to tracks along with an image. Follow similiar design to spotify. Redesing tracks to follow Spotify. 
+    <!-- 2. Add sample songs to tracks along with an image. Follow similiar design to spotify. Redesing tracks to follow Spotify.  -->
     3. The current playlist should have 3 playlist in large screens, 2 playlist in medium screens and on play list on       small screens. It should have a similar display as Spotify. 
-    4. Current playlist should also have a delete buttom that will ask for confirmation before deletion. 
-    5. Have current playlist update when changes are made. 
+    <!-- 4. Current playlist should also have a delete buttom that will ask for confirmation before deletion.  -->
+    <!-- 5. Have current playlist update when changes are made.  -->
     6. refactor spotify Object.  

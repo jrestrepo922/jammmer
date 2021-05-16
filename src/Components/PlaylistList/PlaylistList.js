@@ -31,8 +31,11 @@ export default class PlaylistList extends Component {
         return (
             <div className="PlaylistList">
                 <h2>Current Playlists</h2>
-                {playlistToDisplay}
+                <div className="PlaylistList-container">
+                    {playlistToDisplay}
+                </div>
             </div>
+
             
         )
     }

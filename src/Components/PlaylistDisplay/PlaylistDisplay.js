@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PlaylistDisplay';
+import './PlaylistDisplay.css';
 
 export default class PlaylistDisplay extends Component {
     constructor(props){
@@ -18,17 +18,14 @@ export default class PlaylistDisplay extends Component {
 
         return (
             <div className={`PlaylistDisplay ${this.props.playlistId}`} onClick={this.handleOnClick}>
-                <div className="overlay">
                     <input type="image" src={this.props.image} alt="album"
-                    style={{height: "auto", width:"100%"}} className="thumbnail"/>
-                </div>
-                <div className="Track-information" >
+                     className="thumbnail"/>
+                <div className="playlist-information" >
                     <h3>{this.props.name}</h3>
-                    
+                    <p>{this.props.owner}</p>
                 </div>
             </div>
         )
     }
 }
 
-// <p>{this.props.owner}</p>
